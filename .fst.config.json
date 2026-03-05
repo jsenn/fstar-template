@@ -1,7 +1,7 @@
 {
     "fstar_exe": "fstar.exe",
     "options": [
-        "--warn_error", "-321"
+        "--warn_error", "-321-241"
     ],
     "include_dirs": [
         "."
