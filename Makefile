@@ -28,12 +28,12 @@ $(CACHE_DIR)/%.fsti.checked:
 
 verify: $(ALL_CHECKED_FILES)
 
-$(BUILD_DIR)/$(ENTRY).native: $(ALL_CHECKED_FILES)
-	mkdir -p $(BUILD_DIR)
-	$(FSTAR) $(FSTAR_ARGS) --codegen OCaml --extract '* -Prims -FStar' --odir $(BUILD_DIR) $(ENTRY).fst
-	cd $(BUILD_DIR) && ocamlfind ocamlopt -package fstar.lib -linkpkg $$(ocamldep -sort *.ml) -o $(ENTRY).native
+$(BUILD_DIR)/$(ENTRY)/$(ENTRY).native: $(ALL_CHECKED_FILES)
+	mkdir -p $(BUILD_DIR)/$(ENTRY)
+	$(FSTAR) $(FSTAR_ARGS) --codegen OCaml --extract '$(ENTRY) -Prims -FStar' --odir $(BUILD_DIR)/$(ENTRY) $(ENTRY).fst
+	cd $(BUILD_DIR)/$(ENTRY) && ocamlfind ocamlopt -package fstar.lib -linkpkg $$(ocamldep -sort *.ml) -o $(ENTRY).native
 
-run: $(BUILD_DIR)/$(ENTRY).native
+run: $(BUILD_DIR)/$(ENTRY)/$(ENTRY).native
 	@$<
 
 clean:
