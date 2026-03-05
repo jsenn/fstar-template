@@ -19,11 +19,11 @@ $(OUT)/.depend: $(FSTAR_FILES)
 -include $(OUT)/.depend
 
 $(CACHE_DIR)/%.fst.checked:
-	mkdir -p $(OUT)
+	mkdir -p $(CACHE_DIR)
 	$(FSTAR) $(FSTAR_ARGS) -c $< -o $@
 
 $(CACHE_DIR)/%.fsti.checked:
-	mkdir -p $(OUT)
+	mkdir -p $(CACHE_DIR)
 	$(FSTAR) $(FSTAR_ARGS) -c $< -o $@
 
 verify: $(ALL_CHECKED_FILES)
